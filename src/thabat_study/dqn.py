@@ -1,4 +1,4 @@
-"""A compact DQN for a CartPole variant with seeded Gaussian observation noise.
+"""A compact DQN for CartPole. The config key obs_noise adds seeded Gaussian observation noise (0.0 in the final settings, see amendment 4).
 
 All random draws come from numpy streams derived from the seed. Per step the
 same number of draws is consumed whatever the policy does.
