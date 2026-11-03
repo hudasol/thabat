@@ -1,0 +1,4 @@
+{"task": "invpend", "algo": "td3", "env_id": "InvertedPendulum-v5", "threshold": 800.0,
+ "eval_episodes": 10, "eval_episodes_curve": 3, "eval_every": 2000,
+ "hidden": 64, "lr": 0.001, "gamma": 0.99, "tau": 0.005, "batch": 64,
+ "policy_noise": 0.2, "noise_clip": 0.5, "policy_delay": 2, "expl_noise": 0.1, "start_steps": 1000}

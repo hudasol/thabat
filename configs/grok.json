@@ -1,0 +1,2 @@
+{"task": "grok", "algo": "adamw_fullbatch", "p": 23, "threshold": 0.9,
+ "lr": 0.001, "wd": 1.0, "eval_every": 250}
