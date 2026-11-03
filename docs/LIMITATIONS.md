@@ -21,6 +21,11 @@ Author: Huda Mueen. This file has no result numbers on purpose. Numbers are in R
 * H3 pools seed and arm pairs. Pairs from the same seed in different arms are not independent, so the one sided p values for H3 are optimistic and the bootstrap intervals, which resample pairs, are too narrow.
 * The number of seeds actually run is smaller than the target of Amendment 1 for some environments, because of limited free compute. The numbers used are stated in RESULTS.md.
 
+## Outcome definition
+
+* The outcome is the score at the last training step. Learning curves of both TD3 and the grokking control oscillate (Figure 4 in RESULTS.md), so a part of the flips is the evaluation landing on a different phase of an oscillation, and not a lasting difference in what was learned. We did not measure how many flips persist if the evaluation were taken a few hundred steps earlier or later.
+* The grokking control ran on fewer seeds than planned (compute), and the 4 thread arm of the RL tasks was stopped early once it proved bit identical.
+
 ## Instrument limits
 
 * Thread count did not change the final parameters of the small MLP policies at all in our setting. For those tasks the thread arm is not a perturbation, and its predictions are NOT TESTABLE. This may differ for other BLAS libraries, other CPUs, larger layers or convolutional models.
