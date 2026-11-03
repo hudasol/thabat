@@ -29,7 +29,7 @@ def success_rates(comps: dict, path) -> None:
     labels, est, lo, hi = [], [], [], []
     for task in dict.fromkeys(t for t, _ in comps):
         arms = [a for t, a in comps if t == task and a != "machine"]
-        c0 = comps[(task, arms[0])]
+        c0 = max((comps[(task, a)] for a in arms), key=lambda c: c["n"])  # reference rate on the largest paired set
         rows = [("ref", c0["ref_rate"], c0["n"])] + [(a, comps[(task, a)]["arm_rate"], comps[(task, a)]["n"]) for a in arms]
         for name, rate, n in rows:
             l, h = stats.wilson_interval(round(rate * n), n)
