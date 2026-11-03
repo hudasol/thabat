@@ -1,0 +1,37 @@
+Output of the smoke scripts, rerun after the study. The original smoke test outputs of 3 November 2026 were not saved. Short runs on seed 0; not results.
+
+$  python smoke_determinism_and_threads.py
+pendulum ref 5.0 s 0 -1689.819 b9b937477c18a2364aaa
+pendulum ref_repeat 2.8 s 0 -1689.819 b9b937477c18a2364aaa
+pendulum thr 4.1 s 0 -1689.819 b9b937477c18a2364aaa
+pendulum fp64 2.6 s 0 -1684.788 c6bc0b5e90ee4b33cfce
+  determinism: True | thr differs: False | fp64 differs: True
+invpend ref 2.4 s 0 6.0 62ce593529d911d6df7c
+invpend ref_repeat 2.3 s 0 6.0 62ce593529d911d6df7c
+invpend thr 4.5 s 0 6.0 62ce593529d911d6df7c
+invpend fp64 2.4 s 0 6.0 44e944283fb94a6faa89
+  determinism: True | thr differs: False | fp64 differs: True
+cartpole ref 1.9 s 0 33.0 3aa11cf28913fa78b29f
+cartpole ref_repeat 2.0 s 0 33.0 3aa11cf28913fa78b29f
+cartpole thr 3.2 s 0 33.0 3aa11cf28913fa78b29f
+cartpole fp64 1.7 s 0 33.0 7f7f618dca73999e2f51
+  determinism: True | thr differs: False | fp64 differs: True
+grok ref 2.8 s 0 0.468 689fa2c7d13fa3944008
+grok ref_repeat 2.5 s 0 0.468 689fa2c7d13fa3944008
+grok thr 4.0 s 0 0.453 5f6e7b9b5fc47cb5e481
+grok fp64 4.0 s 0 0.475 32843e98d37e14e05ca2
+  determinism: True | thr differs: True | fp64 differs: True
+
+$  python smoke_thread_width.py
+64 64 thr differs: False times 4.1 7.2
+128 128 thr differs: False times 5.9 10.9
+256 256 thr differs: False times 13.3 24.0
+
+$  python smoke_mkl_cbwr.py
+3c188dc57db7a68fdac1 -1834.74 True
+
+$ MKL_CBWR=COMPATIBLE python smoke_mkl_cbwr.py
+61cf26126c3a24043772 -1835.47 True
+
+$ MKL_CBWR=AVX2 python smoke_mkl_cbwr.py
+af937a02c1d0e5ff8ab7 -1829.11 True
