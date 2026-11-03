@@ -1,0 +1,94 @@
+{
+  "ref": {
+    "blas": "scipy-openblas",
+    "cpu_count": 2,
+    "cpu_model": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+    "env_vars": {
+      "CUDA_VISIBLE_DEVICES": null,
+      "MKL_CBWR": null,
+      "MKL_NUM_THREADS": null,
+      "OMP_NUM_THREADS": null,
+      "OPENBLAS_NUM_THREADS": "1"
+    },
+    "libraries": {
+      "gymnasium": "1.4.0",
+      "matplotlib": "3.11.2",
+      "mujoco": "3.17.0",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "torch": "2.15.0+cpu"
+    },
+    "machine": "x86_64",
+    "platform": "Linux-6.18.44-fc-v230-x86_64-with-glibc2.39",
+    "python": "3.13.18",
+    "requested": {
+      "deterministic": false,
+      "device": "cpu",
+      "dtype": "float32",
+      "name": "ref",
+      "tf32": false,
+      "threads": 1
+    },
+    "torch": {
+      "cuda_available": false,
+      "cudnn_benchmark": false,
+      "cudnn_deterministic": false,
+      "default_dtype": "float32",
+      "deterministic_algorithms": false,
+      "interop_threads": 2,
+      "mkl": true,
+      "mkldnn": true,
+      "parallel_backend": "ATen parallel backend: OpenMP",
+      "tf32_cudnn": false,
+      "tf32_matmul": false,
+      "threads": 1,
+      "version": "2.15.0+cpu"
+    }
+  },
+  "thr": {
+    "blas": "scipy-openblas",
+    "cpu_count": 2,
+    "cpu_model": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+    "env_vars": {
+      "CUDA_VISIBLE_DEVICES": null,
+      "MKL_CBWR": null,
+      "MKL_NUM_THREADS": null,
+      "OMP_NUM_THREADS": null,
+      "OPENBLAS_NUM_THREADS": "1"
+    },
+    "libraries": {
+      "gymnasium": "1.4.0",
+      "matplotlib": "3.11.2",
+      "mujoco": "3.17.0",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "torch": "2.15.0+cpu"
+    },
+    "machine": "x86_64",
+    "platform": "Linux-6.18.44-fc-v230-x86_64-with-glibc2.39",
+    "python": "3.13.18",
+    "requested": {
+      "deterministic": false,
+      "device": "cpu",
+      "dtype": "float32",
+      "name": "thr",
+      "tf32": false,
+      "threads": 4
+    },
+    "torch": {
+      "cuda_available": false,
+      "cudnn_benchmark": false,
+      "cudnn_deterministic": false,
+      "default_dtype": "float32",
+      "deterministic_algorithms": false,
+      "interop_threads": 2,
+      "mkl": true,
+      "mkldnn": true,
+      "parallel_backend": "ATen parallel backend: OpenMP",
+      "tf32_cudnn": false,
+      "tf32_matmul": false,
+      "threads": 4,
+      "version": "2.15.0+cpu"
+    }
+  }
+}
