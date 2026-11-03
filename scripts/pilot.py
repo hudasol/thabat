@@ -27,9 +27,10 @@ def main() -> None:
     out_dir = ROOT / "results" / "pilot"
     tried = []
     chosen = None
-    for i, entry in enumerate(grid[args.task]):
+    for entry in grid[args.task]:
         cfg = {**base, **entry}
-        table = PairedRunner(lambda s, e: fn(s, e, cfg), [ARMS["ref"]], out_dir / f"{args.task}.{i}.jsonl").run(
+        key = "_".join(f"{k}{v}" for k, v in entry.items())  # file name follows the budget, not its position
+        table = PairedRunner(lambda s, e: fn(s, e, cfg), [ARMS["ref"]], out_dir / f"{args.task}.{key}.jsonl").run(
             range(lo, hi + 1), log=print
         )
         rows = table.rows("ref")
