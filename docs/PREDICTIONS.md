@@ -483,3 +483,12 @@ Everything else, including the thresholds, arms, metrics and checks of all predi
 2. Tie rule for the pilot. If no grid entry lies in the band and two entries are equally close to 0.5, the cheaper entry is used and the choice is flagged.
 3. Run order. Compute is limited, so each task is run first for seeds 0 to 29 in the arms `ref`, `fp64` and `isa`, then `thr`, then the determinism control, and only afterwards, if time remains, for seeds 30 to 59. Amendment 1 raised the target to 60 seeds. If only seeds 0 to 29 are finished, the write up says so, and the minimum of 30 seeds per environment is still met. Runs are resumable, so the remaining seeds can be added with the commands in METHOD.md.
 
+#### Amendment 6, 3 November 2026, written after the evaluation runs, to record deviations and process facts
+
+This entry is a disclosure, not a plan. It was written after the data existed and changes no prediction block.
+
+1. Deviations from the plan. The 4 thread arm of CartPole was stopped at 10 seeds and that of InvertedPendulum at 5 seeds, after they had proved bit identical to the reference, to save compute. The grokking control ran 42 of the 60 planned seeds (0 to 41), stopped at a complete seed boundary for compute. The RL tasks ran 30 seeds (0 to 29), as Amendment 5 allowed. The GPU arm was not run.
+2. Preregistration chronology. A smoke test (short runs on seed 0) preceded the first commit of this file, and it informed the expectation, written in the original blocks, that thread count might give no perturbation. Its scripts are in docs/evidence/ together with a rerun of their output, and the rerun reproduces the parameter hashes that were seen at the time. The original output was not saved. The pilot rows were committed after Amendments 3 to 5 that cite them. The git history therefore shows the amendments before the pilot data they rely on, and no evaluation data before the amendments.
+3. Tuning rule. The text above says that hyperparameters other than the budget are not tuned. Amendments 4 and 5 knowingly overrode that for CartPole noise, the grokking learning rate and the InvertedPendulum batch size, on pilot seeds only. The blocks that mention a "CartPole variant" were scored on the amended task, which is standard CartPole, and the task table above still shows the original noise setting.
+4. Commit identity. The commits up to and including the Pendulum data commit use the GitHub noreply address of the account hudasol. Later commits use the address hudamueen2407@gmail.com. History was not rewritten.
+
