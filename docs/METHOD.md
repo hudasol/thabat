@@ -24,7 +24,7 @@ Everything else is shared: the seed fixes the initial weights, replay sampling, 
 | InvertedPendulum (MuJoCo) | TD3, two layers of 64 units, batch 256 (see amendment 5) | mean return over 10 episodes of at least 800 | 20,000 steps |
 | Modular addition, modulus 23 (positive control), 12,311 parameter transformer, learning rate 0.003 (see amendment 4) | full batch AdamW, weight decay 1.0 | held out accuracy of at least 0.90 | 3,000 steps, training fraction 0.5 |
 
-The pre registered settings were changed in four places after the pilot, always on pilot seeds only and always before any evaluation run. The reasons and the original text are in the amendment log of PREDICTIONS.md and the pilot rows are in PILOT.md.
+The pre registered settings were changed in three places after the pilot (CartPole noise, the grokking learning rate, the InvertedPendulum batch size) and the Pendulum grid was refined, always on pilot seeds only and always before any evaluation run. The reasons and the original text are in the amendment log of PREDICTIONS.md and the pilot rows are in PILOT.md.
 
 The final evaluation uses a deterministic policy and fixed evaluation seeds (100000 and up), identical for all training seeds and arms. Learning curves use different evaluation seeds (900000 and up) and do not influence training.
 
@@ -45,10 +45,15 @@ For each task and arm, paired by seed: success rates with Wilson 95 percent inte
 ## Reproduce
 
     pip install -e ".[study,dev]"
-    python scripts/pilot.py --task pendulum        # likewise cartpole, invpend, grok
-    python scripts/run_task.py --task pendulum --arms ref,ref_repeat,thr,fp64 --seeds 0:60 --shard a
-    python scripts/run_task.py --task pendulum --arms isa --mkl-cbwr COMPATIBLE --seeds 0:60 --shard isa
+    python scripts/pilot.py --task pendulum        # likewise cartpole, invpend, grok (uses the amended grid)
+    python scripts/run_task.py --task pendulum --arms ref,fp64 --seeds 0:30 --shard a
+    python scripts/run_task.py --task pendulum --arms ref,ref_repeat --seeds 0:10 --shard rep
+    python scripts/run_task.py --task pendulum --arms isa --mkl-cbwr COMPATIBLE --seeds 0:30 --shard isa
+    python scripts/run_task.py --task pendulum --arms thr --seeds 0:30 --shard a
+    python scripts/build_report.py                 # kit tests and coverage for the B predictions
     python scripts/analyze.py
-    python scripts/render_results.py
+    python scripts/render_pilot.py && python scripts/render_results.py
+
+These are the commands that produced the stored rows (seeds 0 to 29, 0 to 9 for the determinism control, 0 to 59 planned and 0 to 41 run for the grokking control). Add `--seeds 30:60` to extend a run.
 
 The GPU arm is run with notebooks/gpu_arm.ipynb, and its result files are added to results/raw/.

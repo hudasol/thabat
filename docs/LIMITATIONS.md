@@ -29,6 +29,9 @@ Author: Huda Mueen. This file has no result numbers on purpose. Numbers are in R
 ## Instrument limits
 
 * Thread count did not change the final parameters of the small MLP policies at all in our setting. For those tasks the thread arm is not a perturbation, and its predictions are NOT TESTABLE. This may differ for other BLAS libraries, other CPUs, larger layers or convolutional models.
+* The 4 thread arm ran on a machine with 2 cores, so the 4 threads were oversubscribed. The statement that thread count is no perturbation for small MLPs is for this machine and this torch build. The BLAS column of RESULTS.md reports the library that numpy was built with. The matrix products of the torch CPU build use its own MKL, which is the library that the kernel path setting changes.
+* The Pendulum determinism control was run in the same shard file as extra reference rows, and the other tasks in a separate process. The loader now raises an error if two rows for the same environment and seed disagree, and none did.
+* The headline count of hits includes instrument and software checks (C0, B1, B2), which are not hypotheses about training. B1 refers to a tagged release that does not exist yet, and the coverage of B2 was above its expected band.
 * The kernel path arm uses an Intel MKL setting (MKL_CBWR set to COMPATIBLE). It is a documented, benign change, but it is specific to this library and this CPU family.
 * All CPU arms ran on one machine with one library stack. The captured environments are in RESULTS.md. Results on other CPUs may differ.
 * The CPU versus GPU arm needs the notebook run on a free GPU. If its result files are absent from `results/raw/`, the GPU predictions are NOT RUN, and nothing in this repository stands in for them. The CPU versus GPU question is open until that run is done.

@@ -46,7 +46,7 @@ The analysis reads `results/raw/` and writes the summary, tables, figures and th
 ## What is real and what is not
 
 * All experimental results come from real training runs whose raw rows are in `results/raw/`.
-* Tests use small hand built rows. They are labelled SYNTHETIC in the test files and are not results.
+* Tests use small hand built rows. Where rows are hand built to check statistics they are labelled SYNTHETIC in the test files. None of them are results.
 * `examples/adopt_minimal.py` is a synthetic demonstration of the kit calls and is not a result.
 * The GPU arm needs the notebook. If its result files are absent from `results/raw/`, its predictions are scored NOT RUN.
 * This is a student research project. It makes no claim about large models and no claim about any organisation.

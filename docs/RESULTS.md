@@ -9,7 +9,7 @@ Author: Huda Mueen. This file is rendered by `scripts/render_results.py` from `r
 * The GPU arm was not run. It needs notebooks/gpu_arm.ipynb on a free GPU, and its result files are not in the repository. Its predictions are NOT RUN.
 * The determinism control used 10 seeds per task.
 
-Pinned environments of the arms that ran:
+Pinned environments of the arms that ran. The BLAS column is the library numpy was built with. The matrix products of the torch CPU build use its own MKL, which the kernel path setting changes. The machine has 2 cores, so the 4 thread arm was oversubscribed.
 
 | Arm | CPU | Torch | Threads | BLAS | MKL_CBWR | Device | Dtype |
 |---|---|---|---|---|---|---|---|
@@ -70,7 +70,7 @@ The AUC compares the distance to the threshold of flipped and unflipped seed and
 
 ## All predictions scored
 
-HIT: 18. MISS: 6. NOT TESTABLE: 6. NOT RUN: 6. Total: 36. The scoring is done by `thabat_kit.scorer` on `results/summary.json`, not by hand.
+HIT: 18. MISS: 6. NOT TESTABLE: 6. NOT RUN: 6. Total: 36. The scoring is done by `thabat_kit.scorer` on `results/summary.json`, not by hand. The totals include instrument and software checks (C0, B1, B2) next to the hypotheses.
 
 | Prediction | Check | Observed | Status |
 |---|---|---|---|

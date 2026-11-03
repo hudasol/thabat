@@ -34,7 +34,7 @@ Ootani lists persistence of the knife edge beyond the 12K parameter regime as op
 
 ## Further context read
 
-* Henderson et al., Deep reinforcement learning that matters (AAAI 2018). Established that RL results depend strongly on seeds and implementation details. We rely on this from prior knowledge and did not re-read the full text for this review. It is the reason we state plainly that seed sensitivity in RL is old news; our question is only about benign numerical changes at a fixed seed.
+* Henderson et al., Deep reinforcement learning that matters (AAAI 2018). Established that RL results depend strongly on seeds and implementation details. We rely on this from prior knowledge and did not read again the full text for this review. It is the reason we state plainly that seed sensitivity in RL is old news; our question is only about benign numerical changes at a fixed seed.
 * arXiv 2609.25634 (Opus and Lu), a replica overlap probe of grokking. The abstract page reports that a preregistered numerical precision requirement failed, but gives no details of the fp32 versus fp64 gate. We read only the abstract page. We take from it a caution: a precision comparison needs a validated instrument, so our harness records a bitwise perturbation check for every arm (see PREDICTIONS.md).
 * arXiv 2609.10657 (Kataria), scaling and phase structure of grokking. The abstract page does not discuss seeds or numerical precision. Not a close competitor.
 * arXiv 2605.18845 (Truong et al.), first passage law for grokking delay. The abstract page does not discuss seeds or numerical precision. Not a close competitor.
@@ -42,6 +42,6 @@ Ootani lists persistence of the knife edge beyond the 12K parameter regime as op
 
 ## Limits of this review
 
-* The reading used web fetches of abstract pages and of full text summaries produced by the fetch tool. Figures quoted from Ootani and Nagarajan et al. come from those summaries and should be checked against the PDFs before any submission.
+* The reading used web fetches of abstract pages and of full text summaries made from the fetched pages by an automated step. Figures quoted from Ootani and Nagarajan et al. come from those summaries and should be checked against the PDFs before any submission.
 * A web search for 2026 RL work on thread count, device or precision induced outcome flips returned nothing that matches. Absence of search results is weak evidence of absence, not proof.
 * We did not search the full body of literature on reproducibility in deep RL beyond the items above.
