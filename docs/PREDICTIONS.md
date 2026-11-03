@@ -379,4 +379,81 @@ The scorer in thabat_kit reads the blocks below. A block is scored HIT when ever
 
 ## Amendment log
 
-No amendments. Any later change is added here with a date, the reason, and the original text kept above.
+### Amendment 1, 3 November 2026, made before the pilot and before any evaluation run
+
+The original text above is kept unchanged. Reasons and changes:
+
+1. Speed. A smoke test of 1,500 step runs (seed 0, no results used) showed about one second per thousand training steps on this machine. Thirty seeds are therefore cheap, and we raise the number of evaluation seeds for each RL task from 0 to 29 to 0 to 59, to narrow the intervals for H2. The grokking control keeps 0 to 59. The minimum of 30 seeds per environment is still met.
+2. Thread count and small MLPs. The same smoke test showed bitwise identical final parameters for 1 versus 4 threads on the Pendulum TD3 network, with hidden width 64, 128 and 256 (batch equal to width). The likely reason is that matrix multiplication threads split the output and keep the order of summation along the inner dimension fixed. We expect the `thr` blocks for the three RL tasks to be NOT TESTABLE, and we will report that as a finding about the instrument, not as a miss. The same test showed that the small transformer of the grokking control does change under 4 threads.
+3. New arm `isa`. Because thread count gives no perturbation for these MLPs, we add one CPU arm that does change the bits in the smoke test: the same code with the environment variable MKL_CBWR set to COMPATIBLE before the process starts, which selects a different kernel path in Intel MKL. It is CPU, 1 thread, float32, and a benign change of the same kind as the others. It is added to the Holm family for H2. Its blocks follow. It is an exploratory addition made after seeing a smoke test of bit differences, and not before seeing anything, which is why it is recorded here and not above.
+4. Machine control for the GPU arm. The Kaggle or Colab notebook runs a CPU reference (`ref_k`, identical settings to `ref`) and the GPU arm (`gpu`) on the same machine, and the GPU comparison is against `ref_k`. The comparison of `ref` with `ref_k` is reported as an exploratory machine arm without prediction blocks.
+
+### H1.pendulum.isa
+
+- hypothesis: H1
+- statement: Pendulum, kernel path arm (CPU, 1 thread, float32, MKL conditional reproducibility set to COMPATIBLE versus the default path): for the same seed, the success outcome flips for a substantial share of seeds.
+- expected: Flip rate about 0.15, plausible range 0.05 to 0.35. The smoke test showed that this setting changes the final bits of a short Pendulum run, so the perturbation is expected to be present.
+- falsified_if: The flip rate is below 0.10 although the perturbation check passed.
+- requires: perturbation_rate.pendulum.isa >= 0.5
+- requires: ref_rate.pendulum >= 0.2
+- requires: ref_rate.pendulum <= 0.8
+- check: flip_rate.pendulum.isa >= 0.10
+
+### H2.pendulum.isa
+
+- hypothesis: H2
+- statement: Pendulum, kernel path arm: the average success rate does not change detectably.
+- expected: Absolute difference between arm rate and reference rate of at most 0.07. A hit means no detectable change, not equivalence.
+- falsified_if: The Holm adjusted exact McNemar p value is below 0.05, or the absolute difference exceeds 0.10.
+- requires: perturbation_rate.pendulum.isa >= 0.5
+- requires: ref_rate.pendulum >= 0.2
+- requires: ref_rate.pendulum <= 0.8
+- check: mcnemar_holm_p.pendulum.isa >= 0.05
+- check: abs_delta.pendulum.isa <= 0.10
+
+### H1.cartpole.isa
+
+- hypothesis: H1
+- statement: CartPole variant, kernel path arm (CPU, 1 thread, float32, MKL conditional reproducibility set to COMPATIBLE versus the default path): for the same seed, the success outcome flips for a substantial share of seeds.
+- expected: Flip rate about 0.15, plausible range 0.05 to 0.35. The smoke test showed that this setting changes the final bits of a short Pendulum run, so the perturbation is expected to be present.
+- falsified_if: The flip rate is below 0.10 although the perturbation check passed.
+- requires: perturbation_rate.cartpole.isa >= 0.5
+- requires: ref_rate.cartpole >= 0.2
+- requires: ref_rate.cartpole <= 0.8
+- check: flip_rate.cartpole.isa >= 0.10
+
+### H2.cartpole.isa
+
+- hypothesis: H2
+- statement: CartPole variant, kernel path arm: the average success rate does not change detectably.
+- expected: Absolute difference between arm rate and reference rate of at most 0.07. A hit means no detectable change, not equivalence.
+- falsified_if: The Holm adjusted exact McNemar p value is below 0.05, or the absolute difference exceeds 0.10.
+- requires: perturbation_rate.cartpole.isa >= 0.5
+- requires: ref_rate.cartpole >= 0.2
+- requires: ref_rate.cartpole <= 0.8
+- check: mcnemar_holm_p.cartpole.isa >= 0.05
+- check: abs_delta.cartpole.isa <= 0.10
+
+### H1.invpend.isa
+
+- hypothesis: H1
+- statement: InvertedPendulum (MuJoCo), kernel path arm (CPU, 1 thread, float32, MKL conditional reproducibility set to COMPATIBLE versus the default path): for the same seed, the success outcome flips for a substantial share of seeds.
+- expected: Flip rate about 0.15, plausible range 0.05 to 0.35. The smoke test showed that this setting changes the final bits of a short Pendulum run, so the perturbation is expected to be present.
+- falsified_if: The flip rate is below 0.10 although the perturbation check passed.
+- requires: perturbation_rate.invpend.isa >= 0.5
+- requires: ref_rate.invpend >= 0.2
+- requires: ref_rate.invpend <= 0.8
+- check: flip_rate.invpend.isa >= 0.10
+
+### H2.invpend.isa
+
+- hypothesis: H2
+- statement: InvertedPendulum (MuJoCo), kernel path arm: the average success rate does not change detectably.
+- expected: Absolute difference between arm rate and reference rate of at most 0.07. A hit means no detectable change, not equivalence.
+- falsified_if: The Holm adjusted exact McNemar p value is below 0.05, or the absolute difference exceeds 0.10.
+- requires: perturbation_rate.invpend.isa >= 0.5
+- requires: ref_rate.invpend >= 0.2
+- requires: ref_rate.invpend <= 0.8
+- check: mcnemar_holm_p.invpend.isa >= 0.05
+- check: abs_delta.invpend.isa <= 0.10
+
