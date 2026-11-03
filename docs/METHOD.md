@@ -17,18 +17,20 @@ Everything else is shared: the seed fixes the initial weights, replay sampling, 
 
 ## Tasks
 
-| Task | Algorithm | Success threshold | Budget |
-|------|-----------|-------------------|--------|
-| Pendulum | TD3, two layers of 64 units | mean return over 20 episodes of at least -250 | chosen by pilot |
-| CartPole variant (seeded observation noise, standard deviation 0.1) | DQN, two layers of 64 units | mean return over 20 episodes of at least 400 | chosen by pilot |
-| InvertedPendulum (MuJoCo) | TD3, two layers of 64 units | mean return over 10 episodes of at least 800 | chosen by pilot |
-| Modular addition (positive control), 12,311 parameter transformer | full batch AdamW | held out accuracy of at least 0.90 | chosen by pilot |
+| Task | Algorithm | Success threshold | Budget (chosen by pilot) |
+|------|-----------|-------------------|--------------------------|
+| Pendulum | TD3, two layers of 64 units, batch 64 | mean return over 20 episodes of at least -250 | 7,000 steps |
+| CartPole (standard dynamics, see amendment 4) | DQN, two layers of 64 units | mean return over 20 episodes of at least 400 | 40,000 steps |
+| InvertedPendulum (MuJoCo) | TD3, two layers of 64 units, batch 256 (see amendment 5) | mean return over 10 episodes of at least 800 | 20,000 steps |
+| Modular addition, modulus 23 (positive control), 12,311 parameter transformer, learning rate 0.003 (see amendment 4) | full batch AdamW, weight decay 1.0 | held out accuracy of at least 0.90 | 3,000 steps, training fraction 0.5 |
+
+The pre registered settings were changed in four places after the pilot, always on pilot seeds only and always before any evaluation run. The reasons and the original text are in the amendment log of PREDICTIONS.md and the pilot rows are in PILOT.md.
 
 The final evaluation uses a deterministic policy and fixed evaluation seeds (100000 and up), identical for all training seeds and arms. Learning curves use different evaluation seeds (900000 and up) and do not influence training.
 
 ## Pilot
 
-The training budget is chosen on pilot seeds 1000 to 1009, in the reference environment only, by the rule in configs/pilot_grid.json: the cheapest budget in an ordered list whose pilot success rate lies between 0.3 and 0.7. Evaluation seeds are 0 to 59. The pilot is documented in PILOT.md.
+The training budget is chosen on pilot seeds 1000 to 1009, in the reference environment only, by the rule in configs/pilot_grid.json: the cheapest budget in an ordered list whose pilot success rate lies between 0.3 and 0.7. Evaluation seeds are 0 to 59 for the grokking control and 0 to 29 or more for the RL tasks, as far as compute allowed (the number actually used is in RESULTS.md). The pilot is documented in PILOT.md.
 
 ## Controls and instrument checks
 
