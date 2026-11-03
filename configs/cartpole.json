@@ -1,4 +1,1 @@
-{"task": "cartpole", "algo": "dqn", "env_id": "CartPole-v1", "obs_noise": 0.1, "threshold": 400.0,
- "eval_episodes": 20, "eval_episodes_curve": 5, "eval_every": 2000,
- "hidden": 64, "lr": 0.001, "gamma": 0.99, "batch": 64,
- "eps_end": 0.05, "eps_decay_frac": 0.3, "start_steps": 500, "target_every": 250}
+{"task": "cartpole", "algo": "dqn", "env_id": "CartPole-v1", "obs_noise": 0.0, "threshold": 400.0, "eval_episodes": 20, "eval_episodes_curve": 5, "eval_every": 2000, "hidden": 64, "lr": 0.001, "gamma": 0.99, "batch": 64, "eps_end": 0.05, "eps_decay_frac": 0.3, "start_steps": 500, "target_every": 250}
