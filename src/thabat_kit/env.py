@@ -16,7 +16,7 @@ from dataclasses import asdict, dataclass
 from importlib import metadata
 
 LIBRARIES = ("numpy", "scipy", "matplotlib", "torch", "gymnasium", "mujoco")
-THREAD_VARS = ("OMP_NUM_THREADS", "MKL_NUM_THREADS", "OPENBLAS_NUM_THREADS", "CUDA_VISIBLE_DEVICES")
+THREAD_VARS = ("OMP_NUM_THREADS", "MKL_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_CBWR", "CUDA_VISIBLE_DEVICES")
 DTYPES = ("float32", "float64")
 
 
