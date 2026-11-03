@@ -58,3 +58,14 @@ def test_gpu_uses_same_machine_reference_and_jsonable(tmp_path):
     out = tmp_path / "s.json"
     analysis.write_summary(res, out)
     assert "invpend.gpu" in json.loads(out.read_text())["comps"]
+
+
+def test_threshold_sweep_synthetic():
+    # SYNTHETIC pairs: one pair straddles the threshold, the other never does
+    pairs = [{"task": "pendulum", "arm": "fp64", "ref_score": -251.0, "arm_score": -249.0},
+             {"task": "pendulum", "arm": "fp64", "ref_score": -900.0, "arm_score": -800.0}]
+    rows = analysis.threshold_sweep(pairs, {"pendulum": -250.0}, {"pendulum": 100.0})
+    at0 = next(r for r in rows if r["offset_sd"] == 0.0)
+    assert at0["flip_rate"] == 0.5 and at0["n"] == 2
+    far = next(r for r in rows if r["offset_sd"] == 0.5)
+    assert far["flip_rate"] == 0.0

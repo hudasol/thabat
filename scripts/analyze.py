@@ -42,6 +42,8 @@ def main(root: Path = ROOT) -> dict:
     write_csv(tables / "summary.csv", rows, list(rows[0])) if rows else None
     if res["pairs"]:
         write_csv(tables / "paired_scores.csv", res["pairs"], list(res["pairs"][0]))
+        sweep = analysis.threshold_sweep(res["pairs"], thresholds, res["ref_sd"])
+        write_csv(tables / "threshold_sweep_exploratory.csv", sweep, list(sweep[0]))
 
     comps = {k: v for k, v in res["comps"].items()}
     if comps:

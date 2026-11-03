@@ -76,7 +76,7 @@ def analyse(raw_dir, thresholds: dict, n_boot: int = 10000) -> dict:
     scale = {t: ref_sd.get(t, float("nan")) for t in RL_TASKS}
     std_pairs = [{**p, "distance": p["distance"] / scale[p["task"]]} for p in h3 if scale[p["task"]] > 0]
     _auc_metrics(metrics, "all", std_pairs, 1.0, n_boot)
-    return {"metrics": metrics, "comps": comps, "pairs": pairs, "h3_pairs": h3}
+    return {"metrics": metrics, "comps": comps, "pairs": pairs, "h3_pairs": h3, "ref_sd": ref_sd}
 
 
 def _auc_metrics(metrics: dict, key: str, pairs: list, scale: float, n_boot: int) -> None:
@@ -91,6 +91,21 @@ def _auc_metrics(metrics: dict, key: str, pairs: list, scale: float, n_boot: int
         metrics[f"auc_lo.{key}"], metrics[f"auc_hi.{key}"] = lo, hi
     else:
         metrics[f"auc_dist.{key}"] = float("nan")
+
+
+def threshold_sweep(pairs: list, thresholds: dict, ref_sd: dict, offsets=(-0.5, -0.25, 0.0, 0.25, 0.5)) -> list:
+    """Exploratory, after the fact: flip rate if the threshold were moved by a multiple of the
+    standard deviation of the reference scores. Not part of the predictions."""
+    out = []
+    keys = sorted({(p["task"], p["arm"]) for p in pairs})
+    for task, arm in keys:
+        P = [p for p in pairs if p["task"] == task and p["arm"] == arm]
+        for off in offsets:
+            tau = thresholds[task] + off * ref_sd[task]
+            flips = sum((p["ref_score"] >= tau) != (p["arm_score"] >= tau) for p in P)
+            out.append({"task": task, "arm": arm, "offset_sd": off, "threshold": tau, "n": len(P),
+                        "flip_rate": flips / len(P), "ref_rate": float(np.mean([p["ref_score"] >= tau for p in P]))})
+    return out
 
 
 def jsonable(obj):
