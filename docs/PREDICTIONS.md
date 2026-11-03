@@ -477,3 +477,9 @@ The pilot (pilot seeds only, reference environment) showed that two pre register
 
 Everything else, including the thresholds, arms, metrics and checks of all prediction blocks, is unchanged. Only pilot seeds were used for these decisions.
 
+#### Amendment 5, 3 November 2026, InvertedPendulum settings, run order and tie rule, made before any evaluation run
+
+1. InvertedPendulum. With the pre registered TD3 settings (batch 64, learning rate 0.001) the pilot success rate was 0.0 at 4,000, 7,000 and 10,000 steps, with mean returns between 34 and 89 against a threshold of 800. Exploration on pilot seeds 1000 to 1002 at 10,000 steps gave 0.0 for batch 256 with learning rate 0.0003 (returns 49 to 59) and 0.0 for batch 256 with learning rate 0.001, where one of three seeds reached a return of 336. We set the batch to 256, keep the learning rate at 0.001, and use a new budget grid of 12,000 to 26,000 steps. The threshold of 800 is unchanged. Files are in results/pilot/original_grid/ and results/pilot/explore/.
+2. Tie rule for the pilot. If no grid entry lies in the band and two entries are equally close to 0.5, the cheaper entry is used and the choice is flagged.
+3. Run order. Compute is limited, so each task is run first for seeds 0 to 29 in the arms `ref`, `fp64` and `isa`, then `thr`, then the determinism control, and only afterwards, if time remains, for seeds 30 to 59. Amendment 1 raised the target to 60 seeds. If only seeds 0 to 29 are finished, the write up says so, and the minimum of 30 seeds per environment is still met. Runs are resumable, so the remaining seeds can be added with the commands in METHOD.md.
+

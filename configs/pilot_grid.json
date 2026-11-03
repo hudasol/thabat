@@ -29,19 +29,16 @@
   ],
   "invpend": [
     {
-      "steps": 4000
+      "steps": 12000
     },
     {
-      "steps": 7000
+      "steps": 16000
     },
     {
-      "steps": 10000
+      "steps": 20000
     },
     {
-      "steps": 15000
-    },
-    {
-      "steps": 22000
+      "steps": 26000
     }
   ],
   "cartpole": [

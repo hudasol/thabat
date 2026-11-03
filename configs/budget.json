@@ -1,4 +1,8 @@
 {
+  "grok": {
+    "steps": 3000,
+    "train_frac": 0.5
+  },
   "pendulum": {
     "steps": 7000
   }
