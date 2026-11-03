@@ -463,3 +463,8 @@ Two points in the original text were open to more than one reading. We fix the r
 
 1. H3 pools flipped and unflipped seed and arm pairs over the arms of a task whose `perturbation_rate` is at least 0.5. An arm with no perturbation has no flips by construction, and including its pairs would only dilute the comparison. The pairs of one seed in different arms are not independent, which we note in the write up.
 2. The Holm family for H2 consists of every RL task and arm comparison for which result files exist, including the `thr` comparisons (whose p value is 1 when no seed differs) and the `isa` comparisons. The grokking control uses the unadjusted McNemar p value.
+
+#### Amendment 3, 3 November 2026, pilot grid refinement for Pendulum, made before any evaluation run
+
+The pilot (pilot seeds 1000 to 1009, reference environment only) gave a success rate of 0.0 for Pendulum at 6,000 steps and 1.0 at 9,000 steps, so the original grid has no entry in the target band of 0.3 to 0.7, and the fallback of the closest entry to 0.5 is a tie between 0.0 and 1.0. We insert 7,000 and 8,000 steps into the Pendulum grid, between the two entries that bracket the band. The rule is unchanged, and the entries already run keep their results. No evaluation seed has been used.
+
