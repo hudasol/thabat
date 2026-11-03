@@ -1,0 +1,39 @@
+{
+  "tried": [
+    {
+      "entry": {
+        "steps": 3000
+      },
+      "rate": 0.0,
+      "n": 10
+    },
+    {
+      "entry": {
+        "steps": 4500
+      },
+      "rate": 0.0,
+      "n": 10
+    },
+    {
+      "entry": {
+        "steps": 6000
+      },
+      "rate": 0.0,
+      "n": 10
+    },
+    {
+      "entry": {
+        "steps": 7000
+      },
+      "rate": 0.6,
+      "n": 10
+    }
+  ],
+  "chosen": {
+    "entry": {
+      "steps": 7000
+    },
+    "rate": 0.6,
+    "flag": null
+  }
+}

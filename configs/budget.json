@@ -1,7 +1,13 @@
 {
+  "cartpole": {
+    "steps": 40000
+  },
   "grok": {
     "steps": 3000,
     "train_frac": 0.5
+  },
+  "invpend": {
+    "steps": 20000
   },
   "pendulum": {
     "steps": 7000

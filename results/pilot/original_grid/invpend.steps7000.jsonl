@@ -1,0 +1,10 @@
+{"curve": [[2000, 69.67], [4000, 56.67], [6000, 100.67], [7000, 53.1]], "env": "ref", "outcome": 0, "param_hash": "d91ad27b3cfde17d50a8", "score": 53.1, "seconds": 18.238, "seed": 1000}
+{"curve": [[2000, 57.33], [4000, 55.67], [6000, 61.67], [7000, 48.2]], "env": "ref", "outcome": 0, "param_hash": "6d6d0ed42970497bd999", "score": 48.2, "seconds": 18.329, "seed": 1001}
+{"curve": [[2000, 43.0], [4000, 59.67], [6000, 41.0], [7000, 38.5]], "env": "ref", "outcome": 0, "param_hash": "a80dcd28734f94ee630d", "score": 38.5, "seconds": 18.277, "seed": 1002}
+{"curve": [[2000, 2.0], [4000, 42.0], [6000, 50.0], [7000, 58.8]], "env": "ref", "outcome": 0, "param_hash": "8b2d4f838e544fc431c4", "score": 58.8, "seconds": 18.315, "seed": 1003}
+{"curve": [[2000, 20.33], [4000, 49.67], [6000, 49.67], [7000, 41.9]], "env": "ref", "outcome": 0, "param_hash": "461c9164448565f010db", "score": 41.9, "seconds": 19.203, "seed": 1004}
+{"curve": [[2000, 12.67], [4000, 44.33], [6000, 42.33], [7000, 44.8]], "env": "ref", "outcome": 0, "param_hash": "7ddafe3df521cc805556", "score": 44.8, "seconds": 17.81, "seed": 1005}
+{"curve": [[2000, 35.33], [4000, 59.33], [6000, 61.33], [7000, 58.5]], "env": "ref", "outcome": 0, "param_hash": "1e9aa2557f87cfba5ff4", "score": 58.5, "seconds": 17.938, "seed": 1006}
+{"curve": [[2000, 82.67], [4000, 83.0], [6000, 42.0], [7000, 43.7]], "env": "ref", "outcome": 0, "param_hash": "0d57c44806f54326299e", "score": 43.7, "seconds": 17.934, "seed": 1007}
+{"curve": [[2000, 17.0], [4000, 65.67], [6000, 77.0], [7000, 88.7]], "env": "ref", "outcome": 0, "param_hash": "f0c2ced9e69050e06ec3", "score": 88.7, "seconds": 17.49, "seed": 1008}
+{"curve": [[2000, 54.33], [4000, 53.67], [6000, 52.0], [7000, 74.5]], "env": "ref", "outcome": 0, "param_hash": "10e78acff953c59155e4", "score": 74.5, "seconds": 17.769, "seed": 1009}
