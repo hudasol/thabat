@@ -22,7 +22,11 @@ class PairedTable:
     def __init__(self, rows: list[dict]):
         self._rows: dict[str, dict[int, dict]] = {}
         for row in rows:
-            self._rows.setdefault(row["env"], {})[int(row["seed"])] = row
+            per_env = self._rows.setdefault(row["env"], {})
+            old = per_env.get(int(row["seed"]))
+            if old is not None and old.get("param_hash") != row.get("param_hash"):
+                raise ValueError(f"conflicting duplicate rows for env {row['env']} seed {row['seed']}")
+            per_env[int(row["seed"])] = row
 
     def envs(self) -> list[str]:
         return list(self._rows)

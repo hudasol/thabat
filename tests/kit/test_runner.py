@@ -43,3 +43,11 @@ def test_runner_logs(tmp_path):
     lines = []
     PairedRunner(toy_run, [NumericalEnv("a")], tmp_path / "z.jsonl").run([1], log=lines.append)
     assert lines and "seed=1" in lines[0]
+
+
+def test_duplicate_rows_must_agree():
+    rows = [{"env": "a", "seed": 0, "outcome": 1, "param_hash": "x"}, {"env": "a", "seed": 0, "outcome": 1, "param_hash": "x"}]
+    assert PairedTable(rows).seeds("a") == [0]
+    rows[1]["param_hash"] = "y"
+    with pytest.raises(ValueError):
+        PairedTable(rows)
