@@ -68,6 +68,16 @@ def _version(name: str):
         return None
 
 
+def _cpu_model():
+    try:
+        for line in open("/proc/cpuinfo"):
+            if line.startswith("model name"):
+                return line.split(":", 1)[1].strip()
+    except OSError:
+        pass
+    return platform.processor() or None
+
+
 def _blas_name():
     try:
         import numpy
@@ -111,6 +121,7 @@ def capture_env(env: NumericalEnv | None = None) -> dict:
         "platform": platform.platform(),
         "machine": platform.machine(),
         "cpu_count": os.cpu_count(),
+        "cpu_model": _cpu_model(),
         "libraries": {name: _version(name) for name in LIBRARIES},
         "blas": _blas_name(),
         "env_vars": {k: os.environ.get(k) for k in THREAD_VARS},

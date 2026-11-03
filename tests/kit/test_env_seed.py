@@ -74,3 +74,8 @@ def test_hash_state_dict_order_independent():
     sd1 = {"b": torch.ones(2), "a": torch.zeros(2)}
     sd2 = {"a": torch.zeros(2), "b": torch.ones(2)}
     assert hash_state_dict(sd1) == hash_state_dict(sd2)
+
+
+def test_capture_has_cpu_model_key():
+    cap = capture_env()
+    assert "cpu_model" in cap and (cap["cpu_model"] is None or isinstance(cap["cpu_model"], str))
