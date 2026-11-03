@@ -1,0 +1,37 @@
+id,status,checks,observed
+H1.pendulum.thr,NOT TESTABLE,flip_rate.pendulum.thr >= 0.1,perturbation_rate.pendulum.thr=0.0; ref_rate.pendulum=0.4666666666666667; flip_rate.pendulum.thr=0.0
+H1.pendulum.fp64,HIT,flip_rate.pendulum.fp64 >= 0.1,perturbation_rate.pendulum.fp64=1.0; ref_rate.pendulum=0.4666666666666667; flip_rate.pendulum.fp64=0.36666666666666664
+H1.pendulum.gpu,NOT RUN,flip_rate.pendulum.gpu >= 0.1,perturbation_rate.pendulum.gpu=None; ref_rate.pendulum=0.4666666666666667; flip_rate.pendulum.gpu=None
+H1.cartpole.thr,NOT TESTABLE,flip_rate.cartpole.thr >= 0.1,perturbation_rate.cartpole.thr=0.0; ref_rate.cartpole=0.23333333333333334; flip_rate.cartpole.thr=0.0
+H1.cartpole.fp64,HIT,flip_rate.cartpole.fp64 >= 0.1,perturbation_rate.cartpole.fp64=1.0; ref_rate.cartpole=0.23333333333333334; flip_rate.cartpole.fp64=0.23333333333333334
+H1.cartpole.gpu,NOT RUN,flip_rate.cartpole.gpu >= 0.1,perturbation_rate.cartpole.gpu=None; ref_rate.cartpole=0.23333333333333334; flip_rate.cartpole.gpu=None
+H1.invpend.thr,NOT TESTABLE,flip_rate.invpend.thr >= 0.1,perturbation_rate.invpend.thr=0.0; ref_rate.invpend=0.36666666666666664; flip_rate.invpend.thr=0.0
+H1.invpend.fp64,HIT,flip_rate.invpend.fp64 >= 0.1,perturbation_rate.invpend.fp64=1.0; ref_rate.invpend=0.36666666666666664; flip_rate.invpend.fp64=0.36666666666666664
+H1.invpend.gpu,NOT RUN,flip_rate.invpend.gpu >= 0.1,perturbation_rate.invpend.gpu=None; ref_rate.invpend=0.36666666666666664; flip_rate.invpend.gpu=None
+H2.pendulum.thr,NOT TESTABLE,mcnemar_holm_p.pendulum.thr >= 0.05; abs_delta.pendulum.thr <= 0.1,perturbation_rate.pendulum.thr=0.0; ref_rate.pendulum=0.4666666666666667; mcnemar_holm_p.pendulum.thr=1.0; abs_delta.pendulum.thr=0.0
+H2.pendulum.fp64,HIT,mcnemar_holm_p.pendulum.fp64 >= 0.05; abs_delta.pendulum.fp64 <= 0.1,perturbation_rate.pendulum.fp64=1.0; ref_rate.pendulum=0.4666666666666667; mcnemar_holm_p.pendulum.fp64=1.0; abs_delta.pendulum.fp64=0.033333333333333326
+H2.pendulum.gpu,NOT RUN,mcnemar_holm_p.pendulum.gpu >= 0.05; abs_delta.pendulum.gpu <= 0.1,perturbation_rate.pendulum.gpu=None; ref_rate.pendulum=0.4666666666666667; mcnemar_holm_p.pendulum.gpu=None; abs_delta.pendulum.gpu=None
+H2.cartpole.thr,NOT TESTABLE,mcnemar_holm_p.cartpole.thr >= 0.05; abs_delta.cartpole.thr <= 0.1,perturbation_rate.cartpole.thr=0.0; ref_rate.cartpole=0.23333333333333334; mcnemar_holm_p.cartpole.thr=1.0; abs_delta.cartpole.thr=0.0
+H2.cartpole.fp64,HIT,mcnemar_holm_p.cartpole.fp64 >= 0.05; abs_delta.cartpole.fp64 <= 0.1,perturbation_rate.cartpole.fp64=1.0; ref_rate.cartpole=0.23333333333333334; mcnemar_holm_p.cartpole.fp64=1.0; abs_delta.cartpole.fp64=0.033333333333333326
+H2.cartpole.gpu,NOT RUN,mcnemar_holm_p.cartpole.gpu >= 0.05; abs_delta.cartpole.gpu <= 0.1,perturbation_rate.cartpole.gpu=None; ref_rate.cartpole=0.23333333333333334; mcnemar_holm_p.cartpole.gpu=None; abs_delta.cartpole.gpu=None
+H2.invpend.thr,NOT TESTABLE,mcnemar_holm_p.invpend.thr >= 0.05; abs_delta.invpend.thr <= 0.1,perturbation_rate.invpend.thr=0.0; ref_rate.invpend=0.36666666666666664; mcnemar_holm_p.invpend.thr=1.0; abs_delta.invpend.thr=0.0
+H2.invpend.fp64,MISS,mcnemar_holm_p.invpend.fp64 >= 0.05; abs_delta.invpend.fp64 <= 0.1,perturbation_rate.invpend.fp64=1.0; ref_rate.invpend=0.36666666666666664; mcnemar_holm_p.invpend.fp64=1.0; abs_delta.invpend.fp64=0.16666666666666669
+H2.invpend.gpu,NOT RUN,mcnemar_holm_p.invpend.gpu >= 0.05; abs_delta.invpend.gpu <= 0.1,perturbation_rate.invpend.gpu=None; ref_rate.invpend=0.36666666666666664; mcnemar_holm_p.invpend.gpu=None; abs_delta.invpend.gpu=None
+H3.pendulum,MISS,auc_dist.pendulum >= 0.7,n_flips.pendulum=22; auc_dist.pendulum=0.6196172248803827
+H3.cartpole,MISS,auc_dist.cartpole >= 0.7,n_flips.cartpole=13; auc_dist.cartpole=0.6587561374795418
+H3.invpend,MISS,auc_dist.invpend >= 0.7,n_flips.invpend=21; auc_dist.invpend=0.4474969474969475
+H3.all,MISS,auc_dist.all >= 0.7,n_flips.all=56; auc_dist.all=0.5872695852534562
+PC1.grok.thr,HIT,flip_rate.grok.thr >= 0.08,perturbation_rate.grok.thr=1.0; ref_rate.grok=0.30952380952380953; flip_rate.grok.thr=0.19047619047619047
+PC2.grok.thr,HIT,mcnemar_p.grok.thr >= 0.05; abs_delta.grok.thr <= 0.1,perturbation_rate.grok.thr=1.0; ref_rate.grok=0.30952380952380953; mcnemar_p.grok.thr=0.2890625; abs_delta.grok.thr=0.09523809523809526
+C0.grok,HIT,determinism_rate.grok >= 1,determinism_rate.grok=1.0
+C0.pendulum,HIT,determinism_rate.pendulum >= 1,determinism_rate.pendulum=1.0
+C0.cartpole,HIT,determinism_rate.cartpole >= 1,determinism_rate.cartpole=1.0
+C0.invpend,HIT,determinism_rate.invpend >= 1,determinism_rate.invpend=1.0
+B1.kit,HIT,tests_failed.kit <= 0,tests_failed.kit=0
+B2.kit,HIT,coverage_percent.kit >= 85,coverage_percent.kit=95.8
+H1.pendulum.isa,HIT,flip_rate.pendulum.isa >= 0.1,perturbation_rate.pendulum.isa=1.0; ref_rate.pendulum=0.4666666666666667; flip_rate.pendulum.isa=0.36666666666666664
+H2.pendulum.isa,HIT,mcnemar_holm_p.pendulum.isa >= 0.05; abs_delta.pendulum.isa <= 0.1,perturbation_rate.pendulum.isa=1.0; ref_rate.pendulum=0.4666666666666667; mcnemar_holm_p.pendulum.isa=1.0; abs_delta.pendulum.isa=0.033333333333333326
+H1.cartpole.isa,HIT,flip_rate.cartpole.isa >= 0.1,perturbation_rate.cartpole.isa=1.0; ref_rate.cartpole=0.23333333333333334; flip_rate.cartpole.isa=0.2
+H2.cartpole.isa,HIT,mcnemar_holm_p.cartpole.isa >= 0.05; abs_delta.cartpole.isa <= 0.1,perturbation_rate.cartpole.isa=1.0; ref_rate.cartpole=0.23333333333333334; mcnemar_holm_p.cartpole.isa=1.0; abs_delta.cartpole.isa=0.06666666666666668
+H1.invpend.isa,HIT,flip_rate.invpend.isa >= 0.1,perturbation_rate.invpend.isa=1.0; ref_rate.invpend=0.36666666666666664; flip_rate.invpend.isa=0.3333333333333333
+H2.invpend.isa,MISS,mcnemar_holm_p.invpend.isa >= 0.05; abs_delta.invpend.isa <= 0.1,perturbation_rate.invpend.isa=1.0; ref_rate.invpend=0.36666666666666664; mcnemar_holm_p.invpend.isa=0.984375; abs_delta.invpend.isa=0.2
