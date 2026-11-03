@@ -388,13 +388,6 @@ The original text above is kept unchanged. Reasons and changes:
 3. New arm `isa`. Because thread count gives no perturbation for these MLPs, we add one CPU arm that does change the bits in the smoke test: the same code with the environment variable MKL_CBWR set to COMPATIBLE before the process starts, which selects a different kernel path in Intel MKL. It is CPU, 1 thread, float32, and a benign change of the same kind as the others. It is added to the Holm family for H2. Its blocks follow. It is an exploratory addition made after seeing a smoke test of bit differences, and not before seeing anything, which is why it is recorded here and not above.
 4. Machine control for the GPU arm. The Kaggle or Colab notebook runs a CPU reference (`ref_k`, identical settings to `ref`) and the GPU arm (`gpu`) on the same machine, and the GPU comparison is against `ref_k`. The comparison of `ref` with `ref_k` is reported as an exploratory machine arm without prediction blocks.
 
-#### Amendment 2, 3 November 2026, a clarification made before the main runs
-
-Two points in the original text were open to more than one reading. We fix the reading now, before any evaluation run:
-
-1. H3 pools flipped and unflipped seed and arm pairs over the arms of a task whose `perturbation_rate` is at least 0.5. An arm with no perturbation has no flips by construction, and including its pairs would only dilute the comparison. The pairs of one seed in different arms are not independent, which we note in the write up.
-2. The Holm family for H2 consists of every RL task and arm comparison for which result files exist, including the `thr` comparisons (whose p value is 1 when no seed differs) and the `isa` comparisons. The grokking control uses the unadjusted McNemar p value.
-
 ### H1.pendulum.isa
 
 - hypothesis: H1
@@ -464,3 +457,9 @@ Two points in the original text were open to more than one reading. We fix the r
 - check: mcnemar_holm_p.invpend.isa >= 0.05
 - check: abs_delta.invpend.isa <= 0.10
 
+#### Amendment 2, 3 November 2026, a clarification made before the main runs
+
+Two points in the original text were open to more than one reading. We fix the reading now, before any evaluation run:
+
+1. H3 pools flipped and unflipped seed and arm pairs over the arms of a task whose `perturbation_rate` is at least 0.5. An arm with no perturbation has no flips by construction, and including its pairs would only dilute the comparison. The pairs of one seed in different arms are not independent, which we note in the write up.
+2. The Holm family for H2 consists of every RL task and arm comparison for which result files exist, including the `thr` comparisons (whose p value is 1 when no seed differs) and the `isa` comparisons. The grokking control uses the unadjusted McNemar p value.
