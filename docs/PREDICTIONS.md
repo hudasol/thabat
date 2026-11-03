@@ -379,7 +379,7 @@ The scorer in thabat_kit reads the blocks below. A block is scored HIT when ever
 
 ## Amendment log
 
-### Amendment 1, 3 November 2026, made before the pilot and before any evaluation run
+#### Amendment 1, 3 November 2026, made before the pilot and before any evaluation run
 
 The original text above is kept unchanged. Reasons and changes:
 
